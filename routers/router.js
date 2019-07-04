@@ -4,7 +4,8 @@ const express=require('express')
 //2、创建路由
 const router =express.Router()
 //4、引入控制器模块
-const pageCtrl=require('./pageCtrl')
+const pageCtrl=require('../controllers/pageCtrl')
+const postsCtrl=require('../controllers/postsCtrl')
 
 //3.1 处理路径判断，读取文件
 // router.get('/'||'index',(req,res)=>{
@@ -59,6 +60,10 @@ router.get('/',pageCtrl.showIndexPage)
 .get('/slides',pageCtrl.showAdminSlidesPage)
 //用户页面
 .get('/users',pageCtrl.showAdminUsersPage)
+
+//获取所有文章数据请求
+.get('/getPostsList',postsCtrl.getPostsList)
+
 
 //4、向外暴露
 module.exports=router

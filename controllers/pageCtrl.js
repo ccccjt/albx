@@ -49,5 +49,4 @@ module.exports={
     showAdminUsersPage(req,res){
         res.render('admin/users')
     }
-    
 }

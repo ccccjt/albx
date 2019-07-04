@@ -1,8 +1,11 @@
 //1、引入核心模块
 const express= require('express')
-// const fs=require('fs')
+
 //4.4引入路由模块
-const router=require('./router')
+const router=require('./routers/router')
+//4.5引入body-parse插件
+const bodyParser=require('body-parser')
+
 //2、创建服务器
 const app=express()
 
@@ -11,6 +14,9 @@ app.use('/assets',express.static('assets'))
 app.use('/uploads',express.static('uploads'))
 app.use('/node_modules',express.static('node_modules'))
 
+// 添加body-parser的配置
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 
 //设置ejs模板引擎
 app.set('view engine','ejs')
