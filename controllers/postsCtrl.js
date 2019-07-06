@@ -13,13 +13,30 @@ module.exports={
                     aaa:err
                 })
             }else{
+                // console.log(data);
                 res.json({
-                    code:400,
+                    code:200,
                     msg:'数据查询成功',
                     data:data
                 })
             }
         })
-    }
+    },
+    //删除文章
+    delPostById(req,res){
+    let id=req.query.id
+    // console.log(id);
+    postsModule.delPostById(id,err=>{
+        if(err) res.json({
+            code:400,
+            msg:'删除失败',
+            err:err
+        })
+        res.json({
+            code:200,
+            msg:'删除成功',
+        })
+    })
+  }
 }
 

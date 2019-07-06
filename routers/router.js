@@ -6,6 +6,7 @@ const router =express.Router()
 //4、引入控制器模块
 const pageCtrl=require('../controllers/pageCtrl')
 const postsCtrl=require('../controllers/postsCtrl')
+const cateCtrl=require('../controllers/cateCtrl')
 
 //3.1 处理路径判断，读取文件
 // router.get('/'||'index',(req,res)=>{
@@ -63,6 +64,10 @@ router.get('/',pageCtrl.showIndexPage)
 
 //获取所有文章数据请求
 .get('/getPostsList',postsCtrl.getPostsList)
+//获取文章分类
+.get('/getCategories',cateCtrl.getCategories)
+//删除文章
+.get('/delPostById',postsCtrl.delPostById)
 
 
 //4、向外暴露
