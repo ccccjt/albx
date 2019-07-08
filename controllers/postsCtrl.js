@@ -37,6 +37,30 @@ module.exports={
             msg:'删除成功',
         })
     })
+  },
+  addPost(req,res){
+    let obj=req.body
+    // console.log('_____________');
+    // console.log(obj);
+    // console.log('_____________');
+    obj.id=null
+    obj.likes=0
+    obj.views=0
+    obj.user_id=req.session.currentUser.id
+    postsModule.addPost(obj,err=>{
+        if(err){
+            res.json({
+                code:400,
+                msg:'文章新增失败'
+            })
+        }else{
+            res.json({
+                code:200,
+                msg:'文章新增成功'
+            })
+        }
+    })
   }
+
 }
 

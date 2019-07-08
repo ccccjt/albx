@@ -3,8 +3,8 @@ $(function () {
   let pagenum = 1
   //每页的数量
   let pagesize = 2
-  init({})
-  function init(query) {
+  init()
+  function init() {
     $.ajax({
       type: 'get',
       url: '/getPostsList',
@@ -12,7 +12,8 @@ $(function () {
       data: {
         pagenum,
         pagesize,
-        ...query
+        status:$('#status').val(),
+        cate:$('#selector').val()
       },
       success: function (res) {
         var html = template('postsListTem', res.data)
@@ -37,22 +38,15 @@ $(function () {
     })
   })();
   $('#selector').on('change', () => {
-    let query = {}
-    query.status = $('#status').val()
-    query.cate = $('#selector').val()
-    init(query)
+    init()
   })
   $('#status').on('change', () => {
-    let query = {}
-    query.status = $('#status').val()
-    query.cate = $('#selector').val()
-    init(query)
+    init()
   })
-  $('#btn-selector').on('click', () => {
-    let query = {}
-    query.status = $('#status').val()
-    query.cate = $('#selector').val()
-    init(query)
+  //筛选按钮
+  $('.btn-selector').on('click', (e) => {
+    e.preventDefault()
+    init()
   })
   function setPage(count) {
     $(".pagination").bootstrapPaginator({
@@ -65,7 +59,7 @@ $(function () {
 
       totalPages: count,//(cnt/pagesize)
       onPageClicked: function (event, originalEvent, type, page) {
-        console.log(page)
+        // console.log(page)
         //这个page就是当前的合理页码值，只需要将全局的pagenum重置，并且重新获取数据就可以了
         pagenum = page
         init()
@@ -82,16 +76,14 @@ $(function () {
         type: 'get',
         url: '/delPostById',
         data: {
-          id: id
+          id
         },
         success: (res) => {
-          location.href = '127.0.0.1:3000/posts'
+          location.href = 'posts'
         }
       })
     }
   })
-
-
 })
 
 

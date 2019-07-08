@@ -7,6 +7,8 @@ const router =express.Router()
 const pageCtrl=require('../controllers/pageCtrl')
 const postsCtrl=require('../controllers/postsCtrl')
 const cateCtrl=require('../controllers/cateCtrl')
+const uploadCtrl=require('../controllers/uploadCtrl')
+const userCtrl=require('../controllers/userCtrl')
 
 //3.1 处理路径判断，读取文件
 // router.get('/'||'index',(req,res)=>{
@@ -38,29 +40,29 @@ router.get('/',pageCtrl.showIndexPage)
 //分类页面
 .get('/list',pageCtrl.showListPage)
 //后台管理主页面
-.get('/index',pageCtrl.showAdminIndexPage)
+.get('/admin/index',pageCtrl.showAdminIndexPage)
 //文章分类目录页面
-.get('/categories',pageCtrl.showAdminCategoriesPage)
+.get('/admin/categories',pageCtrl.showAdminCategoriesPage)
 //评论页面
-.get('/comments',pageCtrl.showAdminCommentsPage)
+.get('/admin/comments',pageCtrl.showAdminCommentsPage)
 //登录页面
-.get('/login',pageCtrl.showAdminLoginPage)
+.get('/admin/login',pageCtrl.showAdminLoginPage)
 //设置分类导航菜单
-.get('/nav-menus',pageCtrl.showAdminNav_menusPage)
+.get('/admin/nav-menus',pageCtrl.showAdminNav_menusPage)
 //修改密码页面
-.get('/password-reset',pageCtrl.showAdminPassword_resetPage)
+.get('/admin/password-reset',pageCtrl.showAdminPassword_resetPage)
 //文章之写文章页面
-.get('/post-add',pageCtrl.showAdminPost_addPage)
+.get('/admin/post-add',pageCtrl.showAdminPost_addPage)
 //文章之所有文章页面
-.get('/posts',pageCtrl.showAdminPostsPage)
+.get('/admin/posts',pageCtrl.showAdminPostsPage)
 //个人资料页面
-.get('/profile',pageCtrl.showAdminProfilePage)
+.get('/admin/profile',pageCtrl.showAdminProfilePage)
 //设置之网站设置
-.get('/settings',pageCtrl.showAdminSettingsPage)
+.get('/admin/settings',pageCtrl.showAdminSettingsPage)
 //设置之图片轮播
-.get('/slides',pageCtrl.showAdminSlidesPage)
+.get('/admin/slides',pageCtrl.showAdminSlidesPage)
 //用户页面
-.get('/users',pageCtrl.showAdminUsersPage)
+.get('/admin/users',pageCtrl.showAdminUsersPage)
 
 //获取所有文章数据请求
 .get('/getPostsList',postsCtrl.getPostsList)
@@ -68,6 +70,12 @@ router.get('/',pageCtrl.showIndexPage)
 .get('/getCategories',cateCtrl.getCategories)
 //删除文章
 .get('/delPostById',postsCtrl.delPostById)
+//添加文章
+.post('/addPost',postsCtrl.addPost)
+//上传文件
+.post('/uploadFile',uploadCtrl.uploadFile)
+//验证用户信息
+.post('/login',userCtrl.login)
 
 
 //4、向外暴露

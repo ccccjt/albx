@@ -48,8 +48,15 @@ limit ${(obj.pagenum - 1) * obj.pagesize},${obj.pagesize}`
   },
   //删除文章
   delPostById(id,callback){
-    var sql = `var sql = 'delete from posts where id =${id}`
+    var sql = `delete from posts where id =${id}`
     connection.query(sql,(err,result)=>{
+      if(err) callback(err)
+      callback(null)
+    })
+  },
+  addPost(obj,callback){
+    var sql=`insert into posts set ?`
+    connection.query(sql,[obj],(err,result)=>{
       if(err) callback(err)
       callback(null)
     })
